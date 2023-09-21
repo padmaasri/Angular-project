@@ -2,10 +2,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+      "baseUrl": "./",
+      
+     "strictPropertyInitialization": false,
+     
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitAny": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -14,7 +18,11 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+
+    "removeComments": false,
+    "jsx": "react",
     "moduleResolution": "node",
+ 
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
@@ -22,12 +30,21 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    
+    "paths": {
+      "@fortawesome/angular-fontawesome": ["node_modules/@fortawesome/angular-fontawesome"]
+    },
+    
   },
   "angularCompilerOptions": {
+      "enableIvy": false,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false,
+    
+    "strictDomEventTypes":false,
+  
   }
 }

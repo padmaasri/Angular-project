@@ -1,0 +1,94 @@
+<form class="example-form">
+    <!-- Custom Input Validation -->
+    <mat-form-field [appearance]="appearance" *ngIf="type!='date'&& type !='time' && type!='cdkDropList'">
+        <mat-label>{{label}}</mat-label>
+        <input type={{type}} [required]="required" matInput [minlength]="minlength" [maxlength]="maxlength"
+            [pattern]="pattern" [placeholder]="placeholder" [formControl]="formControl" class="form-control">
+
+        <span *ngIf="formControl.errors?.['pattern']&&!formControl.errors?.['required']" matSuffix
+            [matTooltip]="'please provide the vaild' + ' ' + label " matTooltipClass="tooltip-red">
+            <mat-icon color="warn" style="cursor: pointer;">info
+            </mat-icon>
+        </span>
+        <span *ngIf="formControl.errors?.['minlength'] && !formControl.errors?.['pattern']" matSuffix
+            [matTooltip]="' Name must be at least 5 characters long.'" matTooltipClass="tooltip-red">
+            <mat-icon color="warn" style="cursor: pointer;">info
+            </mat-icon>
+        </span>
+        <span *ngIf="formControl.errors?.['maxlength'] && !formControl.errors?.['pattern']" matSuffix
+            [matTooltip]="'Name must be at most 10 characters long.'" matTooltipClass="tooltip-red">
+            <mat-icon color="warn" style="cursor: pointer;">info
+            </mat-icon>
+        </span>
+        <!-- <mat-error *ngIf="formControl.errors?.['maxlength']">Name must be at most 10 characters long
+        </mat-error> -->
+        <span matSuffix *ngIf="formControl.hasError('required') && formControl.touched" matTooltip="{{error_message }}"
+            [matTooltipDisabled]="!formControl.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+    </mat-form-field>
+
+    <!-- Custom Date Picker Validation -->
+
+    <mat-form-field [appearance]="appearance" *ngIf="type=='date'">
+        <input #myInput matInput [matDatepicker]="picker" mask="d0/M0/0000" [required]="required"
+            [formControl]="formControl">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+        <span matSuffix *ngIf="formControl.hasError('required') && formControl.touched" matTooltip="{{error_message }}"
+            [matTooltipDisabled]="!formControl.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+    </mat-form-field>
+
+    <!-- Custom Time Picker Validation -->
+
+    <mat-form-field [appearance]="appearance" *ngIf="type=='time'">
+        <input type="text" placeholder="HH:MM AM/PM " matInput [required]="required" [formControl]="formControl"
+            [ngxTimepicker]="pickertime1" required>
+        <mat-icon matSuffix (click)="pickertime1.open()">
+            access_time
+        </mat-icon>
+        <ngx-material-timepicker color="#6200EE" #pickertime1>
+        </ngx-material-timepicker>
+        <span matSuffix *ngIf="formControl.hasError('required') && formControl.touched" matTooltip="{{error_message }}"
+            [matTooltipDisabled]="!formControl.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+    </mat-form-field>
+
+    <!-- CdK Drag & Drop  -->
+
+    <div *ngIf="type =='cdkDropList'">
+        <div class="example-container">
+            <h2>To do</h2>
+
+            <div cdkDropList #todoList="cdkDropList" cdkDragHandle [cdkDropListData]="todo"
+                [cdkDropListConnectedTo]="[doneList ,progress]" class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+        <div class="example-container">
+            <h2>Done</h2>
+
+            <div cdkDropList #doneList="cdkDropList" cdkDragHandle [cdkDropListData]="done"
+                [cdkDropListConnectedTo]="[todoList , progress] " class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+        <div class="example-container">
+            <h2>In progress</h2>
+
+            <div cdkDropList #progress="cdkDropList" cdkDragHandle [cdkDropListData]="progressList"
+                [cdkDropListConnectedTo]="[todoList , doneList] " class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of progressList" cdkDrag>{{item}}</div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<br>

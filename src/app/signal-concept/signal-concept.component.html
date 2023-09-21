@@ -1,0 +1,71 @@
+<!-- Using the dateFormat custom pipe -->
+<p>{{ 01-04-2023 | dateFormat: 'shortDate' }}</p>
+<div class="jumbotron text-center">
+</div>
+<div class="container">
+    <div class="row custom-wrapper">
+        <div class="col-md-12">
+
+            <!-- Form starts -->
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+                <div class="group-gap">
+
+                    <!-- Upload image -->
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file' formControlName="file" id="imageUpload" accept="image/png" #fileInput
+                                (change)="uploadFile($event)" />
+
+                            <mat-icon (click)="removeImage(imageUrl)">cancel</mat-icon>
+                        </div>
+                        <div class="avatar-preview">
+                            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-danger btn-lg btn-block" (click)="fileInput.click()">Upload
+                    Image</button>
+                <div *ngIf="registrationForm.get('file')?.hasError('validSize')">Invalid image
+                    format.
+                    Supported formats: JPEG, PNG,
+                    GIF.</div>
+
+
+            </form><!-- Form ends -->
+
+        </div>
+    </div>
+</div>
+<!-- Submit Button -->
+
+
+
+
+<div class="container-fluid py-3">
+    <h1>Angular Share Buttons</h1>
+
+    <share-buttons theme="modern-dark"
+        [include]="[ 'facebook', 'email', 'messenger','linkedin', 'pinterest', 'sms', 'telegram',  'twitter',  'whatsapp']"
+        [showIcon]="true" [showText]="true" url="https://github.com/husseinAbdElaziz"
+        description="Angular Share Buttons" twitterAccount="rodrigokamada" class="pt-5">
+    </share-buttons>
+</div>
+
+<p>Login Form</p>
+<form [formGroup]="form">
+    <app-custom-validate label="Username" [required]="true" [minlength]="5" [maxlength]="20"
+        error_message="please provide the name" placeholder="Custom Input" [control]="form.get('Username')">
+    </app-custom-validate>
+    <app-custom-validate type="password" label="password" [required]="true" [minlength]="5" [maxlength]="20"
+        error_message="please provide the password" placeholder="Custom Input" [control]="form.get('password')">
+    </app-custom-validate>
+    <button class=" btn btn-success" (click)="submit()">Submit</button>
+</form>
