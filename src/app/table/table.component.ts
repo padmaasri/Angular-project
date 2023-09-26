@@ -34,7 +34,7 @@ export class PaginationDTO implements ICommunication {
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
-  tableColumns: string[] = ['check', 'id', 'brand', 'images', 'status', 'Action'];
+  displayedColumns: string[] = ['check', 'id', 'brand', 'images', 'status', 'Action'];
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<PeriodicElement>(true, []);
   TableList: any[] = [];
@@ -45,7 +45,20 @@ export class TableComponent {
   total: any;
   skip: any;
   sortedData: any[];
+  title = 'todo';
 
+  todoList = [
+    { title: 'install NodeJS' },
+    { title: 'install Angular CLI' },
+    { title: 'create new app' },
+    { title: 'serve app' },
+    { title: 'develop app' },
+    { title: 'deploy app' },
+  ];
+
+  addItem(title: string): void {
+    this.todoList.push({ title });
+  }
 
   onSortChanged(event) {
     const data = this.dataSource.filteredData.slice();
@@ -101,6 +114,13 @@ export class TableComponent {
     this.PaginationDTO.limit = event.limit;
     this.tableList();
   }
+  page(event) {
+    console.log("hit")
+    console.log(event, 'eventvalue')
+    this.PaginationDTO.skip = event.skip;
+    this.PaginationDTO.limit = event.limit;
+    this.tableList();
+  }
   check(event) {
 
     this.confirmDialogService.showConfirm('Confirm Action', 'You Want check').subscribe((result) => {
@@ -112,7 +132,7 @@ export class TableComponent {
         // User clicked Cancel, do nothing or handle accordingly
         // this.router.navigate(['/table']);
       }
-
+      //this.toaster.success("Check All In One Table ")
       //  this.router.navigate(['/signal']);
     });
   }

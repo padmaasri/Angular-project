@@ -1,0 +1,46 @@
+<div class="style">
+    <h1>State Management</h1>
+</div>
+<div class="input">
+    <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input type="text" [(ngModel)]="newInputValue" matInput placeholder="name">
+    </mat-form-field>
+    <br>
+    <button class="primary" (click)="addInput()">Add More</button>
+    <br>
+    <br>
+
+    <div class="output">
+        <div *ngFor="let value of inputValues; let i = index">
+            <mat-checkbox [(ngModel)]="Checked[i]" (change)="toggleCheckbox(i)"></mat-checkbox>
+            <div *ngIf="Checked[i]; else inputBox">
+                <input [ngStyle]="{'text-decoration': 'line-through'}" [value]="value">
+            </div>
+            <ng-template #inputBox>
+                <input [(ngModel)]="inputValues[i]" [value]="value">
+            </ng-template>
+            <mat-icon (click)="remove(i)">cancel</mat-icon>
+
+        </div>
+        <p>{{inputValues.length == 1 ? 'Number Of Item : ' + inputValues.length : ' Number Of Items :' +
+            inputValues.length}}</p>
+    </div>
+</div>
+
+<!-- 
+<button (click)="start()">Start</button> -->
+<!-- OTP Verfication :{{display}} -->
+<!-- <button (click)="increment()">count</button> -->
+
+<p *ngFor="let value of values">{{value}}</p>
+
+<div class="text-right w-full">
+    <h1> Otp Verfication :</h1>
+    <p class="ml-1 " *ngIf="(timer1.timer$|async)!='00.00'">{{timer1.timer$|async}}
+    </p>
+    <button class="primary" (click)=" resendOTP()" *ngIf="(timer1.timer$|async)=='00.00'">resend
+        Otp
+    </button>
+
+</div>

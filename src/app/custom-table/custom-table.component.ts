@@ -7,6 +7,7 @@ import { popservice } from '../model/popservice.service';
 import { Route, Router } from '@angular/router';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 export interface TableData {
   id: number;
@@ -15,54 +16,52 @@ export interface TableData {
   status: string;
   imageUrl: string;
 }
+export interface PaginationEvent {
+  skip: number;
+  limit: number;
+}
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.css']
 })
 export class CustomTableComponent {
+  showBoundaryLinks: boolean = true;
+  showDirectionLinks: boolean = true;
   public loading: boolean = false
   @Input() dataSource: any;
   @Input() displayedColumns: string[];
-
-  @Input() isChecked: boolean = false; // Input to set the checkbox state
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @Output() checkedChange = new EventEmitter<boolean>(); // Output to emit changes
   paginatedData: any[];
   @Input() limit: any = 10;
   @Input() total: any;
   @Input() pageOptions: any[]
   @Input() needPagination: boolean = false
-  @ViewChild('empTbSort') empTbSort = new MatSort();
-  @Output() pageChanged = new EventEmitter<number>();
+  @Output() onPage: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(MatSort) sort: MatSort;
   @Output() onPaginating: EventEmitter<any> = new EventEmitter()
   @Output() checkval: EventEmitter<any> = new EventEmitter()
   @Output() onsort: EventEmitter<any> = new EventEmitter()
-  currentPage = 1;
+
   constructor(private service: ServiceService,
-    private toastr: ToastrService, private confirmDialogService: popservice,
-    private router: Router, private _liveAnnouncer: LiveAnnouncer) { }
+    private confirmDialogService: popservice,
+    private router: Router) { }
 
   announceSortChange(sort: Sort) {
     this.onsort.emit({ sort: sort })
     console.log("hit")
-
-
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+
+  pageChanged(event: PageChangedEvent): void {
+    console.log(event, "ngx")
+    this.onPage.emit({ skip: (event.page - 1) * event.itemsPerPage, limit: event.itemsPerPage, } as PaginationEvent);
   }
 
-  toggleCheckbox(): void {
-    this.isChecked = !this.isChecked;
-    this.checkedChange.emit(this.isChecked);
-  }
   onPageChange(event: MatPaginator) {
     console.log(event, "event")
     this.onPaginating.emit({ skip: event.pageIndex, limit: event.pageSize, length: event.length })
@@ -77,14 +76,10 @@ export class CustomTableComponent {
       this.loading = false;
       if (result) {
         this.loading = false;
-        // User clicked OK, perform the action
         this.router.navigate(['/signal']);
       } else {
-        // User clicked Cancel, do nothing or handle accordingly
         this.router.navigate(['/table']);
       }
-
-      //  this.router.navigate(['/signal']);
     });
 
   }

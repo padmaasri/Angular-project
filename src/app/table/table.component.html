@@ -1,8 +1,10 @@
 <br>
 <br>
 
+
+
 <h1>Implement The All In One Table</h1>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '5px' }"></ngx-loading>
-<app-custom-table [displayedColumns]="tableColumns" [dataSource]="dataSource" (onPaginating)="pagination($event)"
+<app-custom-table [displayedColumns]="displayedColumns" [dataSource]="dataSource" (onPaginating)="pagination($event)"
     [limit]="limit" [pageOptions]="[10,15,20,25,]" [needPagination]="true" [total]="total" matSort
-    (onsort)="onSortChanged($event)" (checkval)="check($event)"></app-custom-table>
+    (onsort)="onSortChanged($event)" (checkval)="check($event)" (onPage)="page($event)"></app-custom-table>

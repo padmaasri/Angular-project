@@ -47,6 +47,13 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CustomTableComponent } from './custom-table/custom-table.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CustomInputComponent } from './custom-input/custom-input.component';
+import { SharedModule } from './shared/shared.module';
+import { CdkMenuModule } from '@angular/cdk/menu';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AddComponent } from './add/add.component';
 function dateRangeValidator(
   control: AbstractControl,
   field: FormlyFieldConfig
@@ -64,6 +71,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+    CustomInputComponent,
     custompipe,
     DateFormatPipe,
     CustomValidateComponent,
@@ -71,6 +79,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ChatBoxComponent,
     TableComponent,
     CustomTableComponent,
+    DashboardComponent,
+    AddComponent,
+
+
 
 
 
@@ -78,8 +90,14 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
   ],
   imports: [
+    NgxPaginationModule,
+    SharedModule,
+
+    CdkMenuModule,
     ShareButtonsModule,
     ShareButtonModule,
+    PaginationModule.forRoot(),
+
     ShareIconsModule,
     MatCheckboxModule,
     MatMenuModule,
@@ -118,6 +136,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatTableModule,
     MatInputModule,
     MatIconModule,
+
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
@@ -128,7 +147,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatNativeDateModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
     MatSelectModule,
+
     OAuthModule.forRoot(),
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({

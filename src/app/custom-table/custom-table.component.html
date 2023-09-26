@@ -1,9 +1,3 @@
-<!-- <div class="custom-cell">
-    <span>{{ data }}</span>
-    <img [src]="imageUrl" alt="User Avatar" width="50">
-
-</div> -->
-
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
         <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
@@ -62,6 +56,9 @@
         <mat-paginator #paginator [pageSizeOptions]="pageOptions" [length]="total" [pageSize]="limit"
             (page)="onPageChange($event)"></mat-paginator>
     </div>
-    <!-- <mat-paginator [length]="dataSource.length" [pageSize]="limit" [pageSizeOptions]="[10, 25, 50, 100]"
-        (page)="onPageChange($event)"></mat-paginator> -->
+    <div class="page">
+        <pagination [boundaryLinks]="showBoundaryLinks" [directionLinks]="showDirectionLinks" [totalItems]="total"
+            [itemsPerPage]="limit" (pageChanged)="pageChanged($event)"></pagination>
+    </div>
+
 </div>

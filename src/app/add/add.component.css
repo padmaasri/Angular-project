@@ -1,0 +1,24 @@
+.text-through {
+    text-decoration: line-through;
+}
+.input{
+    padding-left: 40%;
+
+    background-color: lightgrey;
+        width: 500px;
+        border: 15px solid burlywood;
+        padding: 50px;
+        margin: 20px;
+}
+.style{
+    padding-bottom: 30px;
+    color: brown;
+}
+.output{
+    padding-bottom: 20px;
+    color:red
+}
+.primary{
+    padding-left: 5px;
+background-color: rgb(0, 238, 255);
+}

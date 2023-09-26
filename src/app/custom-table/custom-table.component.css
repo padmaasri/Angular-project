@@ -32,3 +32,6 @@ table {
     cursor: pointer;
     color: #fff !important;
 }
+.page{
+    padding-left: 30%;
+}
