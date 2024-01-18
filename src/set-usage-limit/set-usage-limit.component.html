@@ -1,0 +1,43 @@
+<div class=" flex flex-col flex-auto my-6">
+
+   <div>
+      <app-breadcrumb pageTitle="Settings" pagesubTitle="Set App Usage Limit"></app-breadcrumb>
+   </div>
+
+   <div class="flex items-start page-card">
+      <div class="max-md:w-full lg:w-2/4">
+         <h1 class="inner-heading">Set App Usage Limit</h1>
+         <div class="notes sm:w-4/6 max-md:w-full">
+            <p>If mobile app user has not used long period, based on the entered duration. user can't allow to use the
+               app</p>
+         </div>
+         <form [formGroup]="usageLimitForm" novalidate>
+            <div class="mt-10 input_common_style">
+               <mat-label>Mobile App Usage Limit <span class="text-red-500">*</span></mat-label>
+               <mat-form-field class="sm:w-4/6" subscriptSizing="fixed">
+
+                  <input type="number" matInput formControlName="duration" placeholder="Enter Duration (only days)" />
+                  <span
+                     *ngIf="usageLimitForm.controls['duration'].hasError('required') && usageLimitForm.controls['duration'].touched "
+                     matSuffix [matTooltip]="'Please provide the Mobile App Usage Limit'"
+                     [matTooltipDisabled]="!usageLimitForm.controls['duration'].invalid" matTooltipClass="tooltip-red">
+                     <mat-icon class="text-red-500">info
+                     </mat-icon>
+                  </span>
+                  <app-svg-icons class="mr-2" matPrefix symbal='time'></app-svg-icons>
+               </mat-form-field>
+            </div>
+
+            <div class="mt-2">
+               <button type="submit" (click)="update()" class="sm:w-4/6 xs:w-full primary_btn">
+                  Update
+               </button>
+            </div>
+         </form>
+      </div>
+      <div class="w-2/4 page_image">
+         <img class="xl:w-3/5 sm:w-full xxl:w-2/4 m-auto" src="assets/images/usage-limit.png" alt="image" />
+      </div>
+
+   </div>
+</div>

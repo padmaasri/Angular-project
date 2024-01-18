@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="chat-container">
+        <div class="card">
+            <h1 class="header">Generative AI</h1>
+            <div class="chat-list">
+
+                <ng-container *ngFor="let message of messages">
+                    <div class="chat-item"
+                        [ngClass]="{'user-message': message.role === 'user', 'bot-message': message.role === 'system'}">
+                        <p id="message-body">{{ message.content }}</p>
+                    </div>
+                </ng-container>
+
+                <div *ngIf="generatedImages.length > 0">
+                    <div *ngFor="let imageUrl of generatedImages; let i = index">
+
+                        <img [src]="imageUrl" alt="Generated Image" width="200px" height="200px" style="padding: 20px;">
+                    </div>
+                </div>
+                <div *ngIf="audio">
+                    <div class="chat-item">
+                        <h1>Name:</h1>
+                        <br>
+                        {{audioUrl}}
+                    </div>
+                </div>
+                <div *ngIf="generatedText">
+                    <h2>Generated Text:</h2>
+                    <p>{{ generatedText }}</p>
+                </div>
+            </div>
+            <br>
+            <div class="chat-footer">
+                <section>
+                    <input matInput id="chat-textarea" [(ngModel)]="userInput" placeholder="send a message " />
+                    <button id="send-button" (click)=" sendMessageAndGenerateImage()"><i
+                            class="bi bi-send"></i></button>
+                    <!-- <button (click)="generateText()">Generate</button> -->
+                    <input type="file" (change)="onFileSelected($event)">
+                    <button (click)="generateAudio(selectedFile)">Generate Audio</button>
+
+                    <!-- src/app/generative-slides/generative-slides.component.html -->
+                    <div>
+                        <!-- <input [(ngModel)]="userInput" placeholder="Enter your text here"> -->
+                        <!-- <button (click)="generateSlides()">Generate Slides</button> -->
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

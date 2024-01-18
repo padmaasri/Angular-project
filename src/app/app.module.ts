@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { MatInputModule } from "@angular/material/input";
@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AbstractControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -54,6 +55,12 @@ import { CdkMenuModule } from '@angular/cdk/menu';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddComponent } from './add/add.component';
+
+import { CashfreeComponent } from './cashfree/cashfree.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { GenerativeAiComponent } from './generative-ai/generative-ai.component';
+import { LoginComponent } from './login session/login/login.component';
+import { AuthGuard } from './login session/auth.guard';
 function dateRangeValidator(
   control: AbstractControl,
   field: FormlyFieldConfig
@@ -81,6 +88,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     CustomTableComponent,
     DashboardComponent,
     AddComponent,
+    CashfreeComponent,
+    RxjsComponent,
+    GenerativeAiComponent,
+    LoginComponent,
 
 
 
@@ -90,6 +101,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
   ],
   imports: [
+
     NgxPaginationModule,
     SharedModule,
 
@@ -102,6 +114,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatCheckboxModule,
     MatMenuModule,
     BrowserModule,
+    MatCardModule,
     DragDropModule,
     MatTimepickerModule,
     ModalModule.forRoot(),
@@ -165,6 +178,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
   ],
   providers: [
+    Meta,
+    AuthGuard,
     OAuthService,
 
     {

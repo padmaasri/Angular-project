@@ -1,0 +1,64 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+            <!-- Image Column -->
+            <td mat-cell *matCellDef="let element">
+                <ng-container *ngIf="column === 'images'">
+                    <img [src]="element?.images[0]" alt="Image" width="60px" height="60px">
+                </ng-container>
+
+                <ng-container *ngIf="column === 'check'">
+                    <mat-checkbox (click)="checkvalue($event)"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="column === 'id'">
+                    <a routerLink="/signal" routerLinkActive="active" ariaCurrentWhenActive="page">{{
+                        element[column]}}</a>
+                </ng-container>
+                <ng-container *ngIf="column === 'status'">
+                    <span [ngClass]="{'category': element?.category == 'smartphones',
+                'category-list': element?.category == 'laptops' ,'category-3':element?.category == 'fragrances'}"
+                        [matTooltip]="'' + ' ' +  element?.category">
+                        {{
+                        element?.category}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="column === 'Action'">
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+
+                    </button>
+                    <mat-menu #menu="matMenu">
+
+                        <button mat-menu-item (click)="showConfirmDialog()">
+                            <span>view</span>
+
+                        </button>
+                        <button mat-menu-item>
+                            <span>Delete</span>
+                        </button>
+
+                    </mat-menu>
+                </ng-container>
+                <ng-container
+                    *ngIf="column !== 'images' && column !== 'check' && column !=='Action' &&  column !=='id' && column !== 'status'">{{
+                    element[column]
+                    }}</ng-container>
+            </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="" *ngIf="(dataSource.filteredData.length != 0 || dataSource.data.length != 0 )&&needPagination">
+        <mat-paginator #paginator [pageSizeOptions]="pageOptions" [length]="total" [pageSize]="limit"
+            (page)="onPageChange($event)"></mat-paginator>
+    </div>
+    <div class="page">
+        <pagination [boundaryLinks]="showBoundaryLinks" [directionLinks]="showDirectionLinks" [totalItems]="total"
+            [itemsPerPage]="limit" (pageChanged)="pageChanged($event)"></pagination>
+    </div>
+
+</div>

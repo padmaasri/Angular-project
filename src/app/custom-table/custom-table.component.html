@@ -16,7 +16,7 @@
                         element[column]}}</a>
                 </ng-container>
                 <ng-container *ngIf="column === 'status'">
-                    <span [ngClass]="{'category': element?.category == 'smartphones',
+                    <span [ngClass]="{'category': element?.category == '',
                 'category-list': element?.category == 'laptops' ,'category-3':element?.category == 'fragrances'}"
                         [matTooltip]="'' + ' ' +  element?.category">
                         {{

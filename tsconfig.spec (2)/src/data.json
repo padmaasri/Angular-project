@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "padmasri",
+            "mobileno": "9342597035",
+            "image": "src/assets/jpg.jpg",
+            "status": "pending"
+        },
+        {
+            "id": 2,
+            "name": "demo",
+            "mobileno": "9342597035",
+            "image": "https://unsplash.com/photos/aZjw7xI3QAA",
+            "status": "completed"
+        },
+        {
+            "id": 3,
+            "name": "test",
+            "mobileno": "9342597035",
+            "image": "https://example.com/image1.jpg",
+            "status": "approved"
+        },
+        {
+            "id": 4,
+            "name": "test data",
+            "mobileno": "9342597035",
+            "image": "https://example.com/image1.jpg",
+            "status": "Reject"
+        }
+    ]
+}

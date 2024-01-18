@@ -1,0 +1,65 @@
+<div class="wrapper">
+    <div class="chat-box">
+        <div class="header">
+            <h1>What's on your mind?</h1>
+            <div class="close"></div>
+        </div>
+        <div class="message-box">
+            <p *ngFor="let message of messageList"><strong>{{message}}</strong>
+            </p>
+
+            <div *ngIf="images">
+                <div *ngFor="let imageData of images">
+                    <img [src]="imageData" *ngIf="format=='image'" width="100px" alt="Shared Image">
+                </div>
+            </div>
+            <div *ngIf="imageB">
+                <div *ngFor="let audioUrl of audioList">
+                    <audio controls>
+                        <source [src]="audioUrl.message" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div *ngFor="let video of videolist">
+                        <video [src]="video.url" *ngIf="format=='video'" height="150" width="200" controls></video>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <!-- <div>
+                <video *ngIf="format=='video'" height="150" width="200" controls></video> <br />
+            </div> -->
+        </div>
+
+
+        <section>
+            <textarea [(ngModel)]="newMessage" placeholder="send message....."
+                (keyup)="$event.keyCode == 13 && sendMessage()">
+
+            </textarea>
+            <button *ngIf="!recording" class="start-button" (click)="startRecording()"><span id="boot-icon"
+                    class="bi bi-mic" style="font-size:40px"></span></button>
+            <button *ngIf="recording" class="stop-button" (click)="stopRecording()"><i class="bi bi-mic"
+                    style="font-size:40px"></i></button>
+
+            <input type="file" style="display: none;" #fileInput (change)="onSelectFile($event)">
+
+
+            <button (click)="fileInput.click()"><i class="bi bi-images bi-5x"></i></button>
+            <button (click)="sendMessage()">Send</button>
+
+            <!-- <input type="file" (change)="onFileChange($event)"> -->
+
+        </section>
+    </div>
+
+    <!-- <div class="bubble" (click)="openChat()" [class.hidden]="isOpen === true"> -->
+
+
+</div>
+
+<!-- audio-chat.component.html -->

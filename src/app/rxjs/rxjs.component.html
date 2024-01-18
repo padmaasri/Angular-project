@@ -1,0 +1,101 @@
+<br>
+<br>
+
+<div class="card">
+    <h1 style="color: aliceblue; padding:40px;">Static Angular Chat Bot</h1>
+    <div class="chat-list">
+        <ng-container *ngFor="let message of messages">
+            <div class="message" [ngClass]="{ 'from': message.author === 'bot',
+'to': message.author === 'user' }">
+                {{ message.content }}
+            </div>
+        </ng-container>
+    </div>
+    <div class="chat-footer">
+        <label for="nameField"></label>
+        <input id="chat-textarea" [(ngModel)]="value" (keyup.enter)="sendMessage()" type="text"
+            placeholder="send message...">
+        <button id="send-button" (click)="sendMessage()">Send</button>
+    </div>
+</div>
+<br>
+<br>
+<button id='btnclick'>click</button>
+<script></script>
+
+
+<br>
+<br>
+<input [(ngModel)]="value">
+<button (click)="add()">add</button>
+<div *ngFor="let val of newval">
+    {{val}}
+
+</div>
+<div>
+    <img src="pic_bulboff.gif" style="width:100px">
+</div>
+<!-- {{val2}}
+{{number1}} -->
+{{min}}:{{sec}}
+<button (click)="start()">start</button>
+<button (click)="stop()">stop</button>
+
+<div class="imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick11.png?raw=true" width=100 height=100 cdkDrag
+        cdkDrop cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick5.png?raw=true" width=100 height=100 cdkDrag
+        cdkDrop cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick9.png?raw=true" width=100 height=100 cdkDrag
+        cdkDrop cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick1.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick13.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick6.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick7.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick15.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick2.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick16.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick8.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick19.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick12.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick10.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick3.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick18.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick17.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick4.png?raw=true" width=100 height=100 cdkDrag
+        cdkDragBoundary=".imgdiv">
+    <img src="https://github.com/AlekhyaDatla/Mickymouse/blob/master/mick14.png?raw=true" width=100 height=100 cdkDrag
+        cdkDrop cdkDragBoundary=".imgdiv">
+</div>
+
+<div class="bgdiv" *ngIf="gametype"></div>
+<!-- <button (click)="audit()> audit</button> -->
+<!-- {{value()}} -->
+<!-- multiplication-table.component.html -->
+<br>
+<br>
+
+{{val}}
+
+<input type="number" [(ngModel)]="number">
+
+<br>
+<table>
+    <tr *ngFor="let multipli of multipli">
+        <td>{{multipli}}*{{number}} ={{ multipli * number }}</td>
+    </tr>
+</table>

@@ -1,0 +1,118 @@
+<button #payCard (click)="onSubmit()">Pay</button>
+<div #paymentMessage></div>
+<!-- Add other HTML elements with #selectors for Cashfree components -->
+
+<main class="container">
+    <div class="row">
+
+        <div class="col  ">
+            <div class="row">
+                <h1>Card Payment</h1>
+            </div>
+        </div>
+        <hr>
+
+    </div>
+    <div class="row">
+        <div class="col col-lg-6 col-sm-12">
+            <div class="row">
+                <h4>Payment Session ID</h4>
+                <div class="col">
+                    <textarea name="" id="paymentSessionId" class="form-control"></textarea>
+                    <span class="form-text text-muted">Don't have a paymentSessionId? Get a sample one <a
+                            href="https://test.cashfree.com/pgappsdemos/sample-psi.php" target="_blank">here</a> for
+                        sandbox mode</span>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <h4>Return URL <span class="badge h6 bg-danger">Required</span></h4>
+                <div class="col">
+                    <textarea name="" id="returnUrl"
+                        class="form-control">https://test.cashfree.com/pgappsdemos/v3success.php?myorder={order_id}</textarea>
+
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="redirectTarget">Redirect New Tab</label>
+                    <div class="checkbox-wrapper-2">
+                        <input id="redirectTarget" type="checkbox" class="sc-gJwTLC ikxBAC">
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="nativeOTP">Native OTP</label>
+                    <div class="checkbox-wrapper-2">
+                        <input id="nativeOTP" type="checkbox" class="sc-gJwTLC ikxBAC">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="payInParts">Allow EMI</label>
+                        <select id="payInParts" class="form-control" name="">
+                            <option value="">NA</option>
+                            <option value="allow_if_possible">allow_if_possible</option>
+                            <option value="3">Auto 3 Months</option>
+                            <option value="hdfc,6">HDFC 6 Months</option>
+                            <option value="axis,12">Axis 12 Months</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col ">
+                    <p class="alert" id="paymentMessage">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-6 col-sm-10">
+
+            <div class="card" style="width: 24rem;">
+                <div class="card-body pb-0">
+
+                    <div class="row">
+                        <h4></h4>
+                        <div class="col">
+                            <div id="card-number" class="card-number form-control"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="cardHolder" class="card-holder form-control"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="cardExpiry" class="form-control"></div>
+                        </div>
+                        <div class="col">
+                            <div class="col">
+                                <div id="cardCvv" class="form-control"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="save" class=""></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary btn-block w-100 pull-right" id="pay-card" type="button">
+                                Pay By Card
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
